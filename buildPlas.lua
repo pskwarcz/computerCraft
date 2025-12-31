@@ -1,0 +1,26 @@
+os.loadAPI('hare')
+ 
+local cliArgs = {...}
+local length = tonumber(cliArgs[1])
+local height = tonumber(cliArgs[2])
+ 
+if length == nil or height == nil or cliArgs[1] == '?' then
+ print('Uzycie: buildPlas <dlugosc> <wysokosc>')
+ return
+end
+
+if hare.countInventory() < ((length - 1) * height * 12) then
+error('za malo blokow')
+end
+
+for p = 1, 4 do
+	hare.buildWall(length - 1, height)
+	turtle.turnRight()
+	
+	hare.buildWall(length - 1, height)
+	turtle.turnRight()
+
+	hare.buildWall(length - 1, height)
+	turtle.turnLeft()
+
+end
